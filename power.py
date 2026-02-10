@@ -16,12 +16,14 @@ def stop_lhm():
 #LHM_PATH = r"\To\LibreHardwareMonitor.exe"
 
 LHM_PATH = os.path.join(os.path.dirname(__file__), "tools", "LibreHardwareMonitor.exe")
+DATA_FILE = os.path.join(os.path.dirname(__file__), "data.json")
+
 def start_lhm():
     if not os.path.exists(LHM_PATH):
         raise FileNotFoundError("LibreHardwareMonitor.exe not found")
 
     # Start as background process
-    subprocess.Popen([LHM_PATH], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    subprocess.Popen(LHM_PATH, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     print("Started LibreHardwareMonitor...")
 
     # Wait a bit for it to initialise
@@ -94,7 +96,7 @@ def wait_for_lhm(timeout=15):
 
 def writetofile_append(new_data):
     """Append a single sample to the JSON file"""
-    filename = "data.json"
+    filename = DATA_FILE
     
     # Load existing data
     if os.path.exists(filename):

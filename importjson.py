@@ -1,6 +1,7 @@
 import json
 import matplotlib.pyplot as plt
 import numpy as np
+import os
 import time
 from scipy.optimize import curve_fit
 
@@ -11,9 +12,11 @@ def model(x, a, b, c):
 plt.ion()
 fig, ax = plt.subplots()
 
+DATA_FILE = os.path.join(os.path.dirname(__file__), "data.json")
+
 while True:
     try:
-        with open("C:/Pythonprojects/powerpy/data.json", "r") as f:
+        with open(DATA_FILE, "r") as f:
             data = json.load(f)
 
         cpu = [entry["Cpu"] for entry in data]

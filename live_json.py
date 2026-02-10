@@ -1,6 +1,7 @@
 import json
 import sys
 import time
+import os
 from PyQt5.QtWidgets import QApplication, QMainWindow, QVBoxLayout, QHBoxLayout, QWidget, QPushButton, QLabel
 from PyQt5.QtCore import QTimer
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
@@ -90,7 +91,7 @@ class LivePlotWindow(QMainWindow):
         self.start_time = time.time()
         
         # Clear the JSON file to start fresh
-        with open(r"C:\Users\xenvo\Pythonprojects\powerpy\data.json", "w") as f:
+        with open(os.path.join(os.path.dirname(__file__), "data.json"), "w") as f:
             json.dump([], f)
         
         self.timer.start(1000)  # Update every 1 second
@@ -103,7 +104,7 @@ class LivePlotWindow(QMainWindow):
     
     def update_plot(self):
         try:
-            data = safe_read_json(r"C:\Users\xenvo\Pythonprojects\powerpy\data.json")
+            data = safe_read_json(os.path.join(os.path.dirname(__file__), "data.json"))
             if not data:
                 self.status_label.setText("Status: Failed to read data")
                 return
