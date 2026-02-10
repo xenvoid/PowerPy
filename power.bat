@@ -1,4 +1,4 @@
 @echo off
-cd /d "C:\Users\xenvo\Pythonprojects\powerpy"
+cd /d "%~dp0"
 py power.py
 pause
