@@ -1,0 +1,6 @@
+[data.json](http://_vscodecontentref_/0)```
+
+[data.jsonold](http://_vscodecontentref_/1)
+*.log
+__pycache__/
+.venv/
